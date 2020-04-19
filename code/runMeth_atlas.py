@@ -11,13 +11,13 @@ if __name__ ==  '__main__':
     import deconvolve_resids
 
     ## Set the working directory
-    os.chdir("/home/lored/Documents/Design_Project/cfRRBS_manuscript/code")
+    os.chdir("/data/gent/vo/000/gvo00024/vsc43290/classification/bwa_meth/cfRRBS_manuscript/code")
 
     # Input files (= outputfiles from MakeTrainTest.py)
     inputFile_tumor_atlas = "./classifySamples/output/train"
 
     inputFile_samples = "./classifySamples/output/test_beta"
-    inputFile_samples = "./classifySamples/output/test_beta_manuscript" # to reproduce manuscript results
+    # inputFile_samples = "./classifySamples/output/test_beta_manuscript" # to reproduce manuscript results
 
     outputFile_atlas = "train_methatlas.csv"
     outputFile_samples = "test_methatlas.csv"

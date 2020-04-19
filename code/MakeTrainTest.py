@@ -45,7 +45,7 @@ tmp_folder = "./classifySamples/processed/"
 
 ## The location of the cfRRBS files, after running the preprocessing pipeline
 test_folder = "./classifySamples/testfiles/"
-test_files = glob.glob(os.path.join(test_folder, "*.cov"))
+test_files = glob.glob(os.path.join(test_folder, "*.bedGraph"))
 
 # Infinium data for the reference dataset
 NBL_infinium_folder = "./classifySamples/train/NBL"
@@ -111,7 +111,7 @@ def import_test_files(x):
         # 1. Read in the bismark coverage file and convert them to a sort-of bed file, so that it can be manipulated with bedtools.
         file = x
         file_name = os.path.splitext(os.path.basename(file))[0]
-        df = pd.read_csv(file, sep="\t",usecols=[0,1,2,3,4,5], header=None)
+        df = pd.read_csv(file, sep="\t",usecols=[0,1,2,3,4,5], header=None, engine='python')
         df[3] = df[3]/100    # From methylation percentage to methylation ratio
         df.to_csv(tmp_folder + "%s.txt" % file_name , header=None, index=None, sep='\t', mode = 'w')
 
