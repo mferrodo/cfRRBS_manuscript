@@ -1,5 +1,5 @@
 #!/bin/bash
-#PBS -N classification
+#PBS -N classification_bwa_meth
 #PBS -l nodes=1:ppn=10
 #PBS -l walltime=1:00:00
 #PBS -m abe

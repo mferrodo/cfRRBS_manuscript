@@ -12,11 +12,13 @@ import pandas as pd
 import seaborn as sns
 import subprocess
 import argparse
+import math
 
 # Parallelisation options
 import multiprocessing
 from multiprocessing import Process, Manager, Pool
 cpuCount = (multiprocessing.cpu_count() - 2)
+print(cpuCount)
 
 ### BEDtools > 2.27.1 is needed!
 ### Tested with py >3.4
@@ -174,6 +176,22 @@ with Manager() as manager:
     pool = Pool(cpuCount)  # Parallelisation function
 
     pool.map(import_test_files, test_files)    # Import the files in parallel
+    pool.close()
+    pool.join()
+
+
+#    nr_of_partitions = math.ceil(len(test_files)/20)
+#    for i in range(nr_of_partitions-1):
+#        pool = Pool(cpuCount)
+#        pool.map(import_test_files, test_files[i*20:(i+1)*20])
+#        pool.close()
+#        pool.join()
+#        print(i)
+#    pool = Pool(cpuCount)
+#    pool.map(import_test_files, test_files[(nr_of_partitions-1)*20:])
+#    pool.close()
+#    pool.join()
+#    print(nr_of_partitions - 1)
 
     print("Merging all %s in one file..." % testMethyName)  # Merge the testMethy_list in a pandas dataframe, merging the same indices
     testMethy = pd.concat(testMethy_list, axis = 1)
