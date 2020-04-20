@@ -3,7 +3,6 @@
 /code/classifySamples/testfiles/*
 /code/classifySamples/resources/*
 /code/classifySamples/processed/*
-/code/classifySamples/output/*
 *HumanMethylation450*.csv
 *DS_Store*
 

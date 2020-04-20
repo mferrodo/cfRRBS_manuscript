@@ -11,7 +11,7 @@ if __name__ ==  '__main__':
     import deconvolve_resids
 
     ## Set the working directory
-    os.chdir("/data/gent/vo/000/gvo00024/vsc43290/classification/Bismark/cfRRBS_manuscript/code")
+    os.chdir("/data/gent/vo/000/gvo00024/vsc43290/classification/bismark/cfRRBS_manuscript/code")
 
     # Input files (= outputfiles from MakeTrainTest.py)
     inputFile_tumor_atlas = "./classifySamples/output/train"
