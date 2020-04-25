@@ -1,9 +1,9 @@
 #!/bin/bash
-#PBS -N classification_bismark
+#PBS -N classification_BSseeker2
 #PBS -l nodes=1:ppn=10
-#PBS -l walltime=1:00:00
+#PBS -l walltime=3:00:00
 #PBS -m abe
-#PBS -M lore.depuydt@ugent.be
+#PBS -M jannes.dewitte@ugent.be
  
 cd $PBS_O_WORKDIR
 ml BEDTools/2.29.2-GCC-8.3.0
