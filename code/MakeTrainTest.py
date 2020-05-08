@@ -12,6 +12,7 @@ import pandas as pd
 import seaborn as sns
 import subprocess
 import argparse
+import math
 
 # Parallelisation options
 import multiprocessing
@@ -171,9 +172,20 @@ with Manager() as manager:
     testDepth_list = manager.list()
     testBeta_list  = manager.list()
 
-    pool = Pool(cpuCount)  # Parallelisation function
+    # pool = Pool(cpuCount)  # Parallelisation function
 
-    pool.map(import_test_files, test_files)    # Import the files in parallel
+    # pool.map(import_test_files, test_files)    # Import the files in parallel
+
+    nr_of_partitions = math.ceil(len(test_files)/20)
+    for i in range(nr_of_partitions-1):
+        pool = Pool(cpuCount)
+        pool.map(import_test_files, test_files[i*20:(i+1)*20])
+        pool.close()
+        pool.join()
+        print (i)
+    pool = Pool(cpuCount)
+    pool.map(import_test_files, test_files[(nr_of_partitions-1)*20:])
+    print(nr_of_partitions - 1)
 
     print("Merging all %s in one file..." % testMethyName)  # Merge the testMethy_list in a pandas dataframe, merging the same indices
     testMethy = pd.concat(testMethy_list, axis = 1)
